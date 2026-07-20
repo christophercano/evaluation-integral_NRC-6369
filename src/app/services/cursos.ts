@@ -17,12 +17,27 @@ export interface CursosModel {
   providedIn: 'root',
 })
 export class CursosService {
-  
+
   private http = inject(HttpClient);
-  
+  private apiUrl = 'http://localhost:3000/api/cursos';
+
+  // Listar cursos
   getCurso(): Observable<CursosModel[]> {
-    return this.http.get<CursosModel[]>('http://localhost:3000/api/cursos');
+    return this.http.get<CursosModel[]>(this.apiUrl);
+  }
+
+  // Crear curso
+  crearCurso(curso: Omit<CursosModel, '_id'>): Observable<CursosModel> {
+    return this.http.post<CursosModel>(this.apiUrl, curso);
+  }
+
+  // Actualizar curso
+  actualizarCurso(id: string, curso: Partial<CursosModel>): Observable<CursosModel> {
+    return this.http.put<CursosModel>(`${this.apiUrl}/${id}`, curso);
+  }
+
+  // Eliminar curso
+  eliminarCurso(id: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 }
-
-// hacer para el post, put, delete
