@@ -12,13 +12,19 @@ const usuarioRoutes = require('./routes/usuarioRoutes');
 const app = express();
 
 app.use(helmet());
+const allowedOrigins = [
+  'http://localhost:4200',
+  'http://localhost:5173',
+  'http://localhost:3001',
+  'https://edutech-api-ykso.onrender.com'
+];
+
+if (process.env.FRONTEND_URL) {
+  allowedOrigins.push(process.env.FRONTEND_URL);
+}
+
 app.use(cors({
-  origin: [
-    'http://localhost:4200',
-    'http://localhost:5173',
-    'http://localhost:3001',
-    process.env.FRONTEND_URL || ''
-  ].filter(Boolean),
+  origin: allowedOrigins,
   credentials: true
 }));
 app.use(express.json({limit:'10kb'}));

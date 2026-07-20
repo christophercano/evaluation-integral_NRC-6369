@@ -15,7 +15,7 @@ export interface UsuarioModel {
 })
 export class UsuariosService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/api/usuarios';
+  private apiUrl = 'https://edutech-api-ykso.onrender.com/api/usuarios';
 
   listar(): Observable<UsuarioModel[]> {
     return this.http.get<UsuarioModel[]>(this.apiUrl, {

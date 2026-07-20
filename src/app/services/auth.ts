@@ -20,7 +20,7 @@ export interface LoginResponse {
 
     private http = inject(HttpClient);
 
-    private apiUrl = 'http://localhost:3000/api/auth';
+    private apiUrl = 'https://edutech-api-ykso.onrender.com/api/auth';
 
     login(email: string, password: string): Observable<LoginResponse> {
         return this.http

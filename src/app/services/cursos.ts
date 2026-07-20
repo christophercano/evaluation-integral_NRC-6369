@@ -19,7 +19,7 @@ export interface CursosModel {
 export class CursosService {
 
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/api/cursos';
+  private apiUrl = 'https://edutech-api-ykso.onrender.com/api/cursos';
 
   // Listar cursos
   getCurso(): Observable<CursosModel[]> {
