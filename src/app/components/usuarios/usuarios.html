@@ -1,0 +1,100 @@
+<nav class="breadcrumb" aria-label="Ruta de navegación">
+  <a routerLink="/">Dashboard</a>
+  <span class="separator" aria-hidden="true">›</span>
+  <span class="current">Gestión de usuarios</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-row">
+    <div>
+      <h1 class="page-title">Gestión de usuarios</h1>
+      <p class="page-subtitle">Administra los usuarios registrados en la plataforma.</p>
+    </div>
+  </div>
+</div>
+
+@if (mensajeExito()) {
+  <div class="alert alert-success" style="margin-bottom:var(--space-4);">
+    {{ mensajeExito() }}
+  </div>
+}
+
+@if (usuarioEditandoId) {
+  <form
+    class="card"
+    style="margin-bottom:var(--space-6);"
+    [formGroup]="usuarioForm"
+    (ngSubmit)="guardarUsuario()">
+    <div class="card-header">
+      <h2 class="card-title">Editar usuario</h2>
+      <div style="display:flex;gap:var(--space-2);">
+        <button class="btn btn-primary btn-sm" type="submit">Guardar cambios</button>
+        <button class="btn btn-ghost btn-sm" type="button" (click)="limpiarFormulario()">Cancelar</button>
+      </div>
+    </div>
+    <div class="form-row cols-3">
+      <div class="form-group">
+        <div class="form-label">Nombre</div>
+        <input type="text" formControlName="nombre" style="padding:var(--space-3);border:1px solid var(--border-color);border-radius:var(--border-radius);width:100%;" />
+      </div>
+      <div class="form-group">
+        <div class="form-label">Email</div>
+        <input type="email" formControlName="email" style="padding:var(--space-3);border:1px solid var(--border-color);border-radius:var(--border-radius);width:100%;" />
+      </div>
+      <div class="form-group">
+        <div class="form-label">Rol</div>
+        <select formControlName="rol" style="padding:var(--space-3);border:1px solid var(--border-color);border-radius:var(--border-radius);width:100%;background:white;">
+          <option value="ESTUDIANTE">ESTUDIANTE</option>
+          <option value="ADMIN">ADMIN</option>
+        </select>
+      </div>
+    </div>
+  </form>
+}
+
+<div class="table-wrapper">
+  <table class="table" aria-label="Tabla de usuarios">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Email</th>
+        <th scope="col">Rol</th>
+        <th scope="col">Registro</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (usuario of usuarios(); track usuario._id) {
+        <tr>
+          <td>
+            <div class="user-cell">
+              <div style="width:42px;height:42px;background:linear-gradient(135deg,#7c3aed,#a855f7);border-radius:var(--border-radius);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;color:white;" aria-hidden="true">
+                {{ usuario.nombre.charAt(0) }}
+              </div>
+              <div class="user-info">
+                <div class="name">{{ usuario.nombre }}</div>
+              </div>
+            </div>
+          </td>
+          <td>{{ usuario.email }}</td>
+          <td>
+            <span class="badge" [class.badge-success]="usuario.rol==='ESTUDIANTE'" [class.badge-accent]="usuario.rol==='ADMIN'">
+              {{ usuario.rol }}
+            </span>
+          </td>
+          <td>{{ usuario.createdAt | date:'shortDate' }}</td>
+          <td>
+            <div class="td-actions">
+              <button class="btn btn-ghost btn-icon btn-sm" title="Editar" (click)="editarUsuario(usuario)">✏️</button>
+              <button class="btn btn-ghost btn-icon btn-sm" style="color:var(--danger-600);" title="Eliminar" (click)="eliminarUsuario(usuario._id)">🗑️</button>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+@if (usuarios().length === 0) {
+  <p style="text-align:center;padding:40px 0;color:var(--gray-600);">No hay usuarios registrados.</p>
+}

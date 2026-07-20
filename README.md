@@ -1,59 +1,151 @@
-# CursosAngularEi
+# 🎓 EduTech - Plataforma de Gestión de Cursos e Inscripciones
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.7.
+Proyecto integrador full stack para la Evaluación Integral Final de **Programación Web II**.
 
-## Development server
+---
 
-To start a local development server, run:
+## 📋 Integrantes
 
-```bash
-ng serve
+| Nombre | Rol | Aporte |
+|--------|-----|--------|
+| Integrante 1 | - | Angular Admin Panel |
+| Integrante 2 | - | Backend Express + MongoDB |
+| Integrante 3 | - | React Student Portal |
+| Integrante 4 | - | Next.js + Despliegue |
+
+---
+
+## 🎯 Problema y Objetivos
+
+**Problema:** Las instituciones educativas necesitan una plataforma para gestionar su catálogo de cursos y permitir a los estudiantes explorar e inscribirse de forma digital.
+
+**Objetivos:**
+- Panel administrativo (Angular) para CRUD de cursos y usuarios
+- Portal del estudiante (React) para catálogo, inscripción y dashboard
+- Vista pública (Next.js) con SSR para SEO y rendimiento
+- API REST segura con JWT, roles y MongoDB Atlas
+
+---
+
+## 🏗️ Arquitectura
+
+```
+MongoDB Atlas ←→ Express API (:3000) ←→ ┌─ Angular Admin (:4200)
+                                         ├─ React Estudiante (:5173)
+                                         └─ Next.js Público (:3001)
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Backend:** Node.js + Express 5 + Mongoose 9
+- **Frontend Admin:** Angular 21 (TypeScript, formularios reactivos, guards)
+- **Frontend Estudiante:** React 19 + Vite (Context API, React Router, Axios)
+- **Frontend Público:** Next.js 16 (SSR con `force-dynamic`, Tailwind CSS)
+- **Base de datos:** MongoDB Atlas
+- **Autenticación:** JWT + bcryptjs con roles ADMIN/ESTUDIANTE
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🚀 URLs Desplegadas
 
+| Servicio | Local | Producción |
+|----------|-------|------------|
+| Backend API | `http://localhost:3000` | Render |
+| Angular Admin | `http://localhost:4200` | Vercel |
+| React Estudiante | `http://localhost:5173` | Vercel |
+| Next.js Público | `http://localhost:3001` | Vercel |
+
+---
+
+## 📦 Instalación
+
+### Requisitos
+- Node.js ≥ 18
+- pnpm (Angular y Backend)
+- npm (React y Next.js)
+
+### 1. Clonar repositorio
 ```bash
-ng generate component component-name
+git clone <repo-url>
+cd cursos-angular-ei
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
+### 2. Backend
 ```bash
-ng generate --help
+cd backend-express
+pnpm install
+cp .env.example .env   # Configurar MONGO_URI y JWT_SECRET
+node server.js          # http://localhost:3000
 ```
 
-## Building
-
-To build the project run:
-
+### 3. Angular (Admin)
 ```bash
-ng build
+pnpm install
+pnpm start              # http://localhost:4200
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
+### 4. React (Portal Estudiante)
 ```bash
-ng test
+cd frontend-react
+pnpm install
+pnpm dev                # http://localhost:5173
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
+### 5. Next.js (Vista Pública)
 ```bash
-ng e2e
+cd frontend-nextjs
+npm install
+npm run dev             # http://localhost:3001
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
+## 🔑 Credenciales de prueba
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+| Rol | Email | Contraseña |
+|-----|-------|------------|
+| Admin | admin@edutech.com | admin123 |
+| Estudiante | (registrarse en el portal) | - |
+
+> Para crear el admin: usar el endpoint `POST /api/auth/register` con `"rol": "ADMIN"`
+
+---
+
+## 📡 Endpoints API
+
+Ver documentación completa en [`/docs/api-endpoints.md`](./docs/api-endpoints.md)
+
+| Recurso | Endpoints |
+|---------|-----------|
+| Auth | `POST /api/auth/register`, `POST /api/auth/login` |
+| Cursos | `GET/POST /api/cursos`, `PUT/DELETE /api/cursos/:id` |
+| Inscripciones | `POST /api/inscripciones`, `GET /api/inscripciones/mis` |
+| Usuarios | `GET /api/usuarios`, `PUT/DELETE /api/usuarios/:id` |
+
+---
+
+## 📂 Documentación adicional
+
+- [`/docs/arquitectura.md`](./docs/arquitectura.md) - Diagrama de arquitectura y decisiones técnicas
+- [`/docs/api-endpoints.md`](./docs/api-endpoints.md) - Documentación completa de la API
+- [`/docs/seguridad.md`](./docs/seguridad.md) - Checklist de seguridad
+
+---
+
+## 🔒 Seguridad
+
+- ✅ Helmet (headers HTTP seguros)
+- ✅ JWT con expiración de 2 horas
+- ✅ bcryptjs (10 rondas de salt)
+- ✅ Validación en frontend y backend
+- ✅ Protección de rutas por rol
+- ✅ Variables de entorno (`.env.example`)
+- ✅ Body limit (10kb)
+
+---
+
+## ▶️ Video de exposición
+
+[🔗 Enlace al video en YouTube](https://youtube.com/...)
+
+---
+
+**Programación Web II** · Código 30690 · Período 202610
