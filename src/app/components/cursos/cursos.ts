@@ -25,6 +25,8 @@ export class Cursos implements OnInit {
 
   cursos = signal<CursosModel[]>([]);
 
+  cursoEditandoId: string | null = null;
+
   private cursoService = inject(CursosService);
   private fb = inject(FormBuilder);
 
@@ -55,19 +57,39 @@ export class Cursos implements OnInit {
 
   guardarCurso(): void {
 
-    if (this.cursoForm.invalid) {
-      this.cursoForm.markAllAsTouched();
-      return;
-    }
+  if (this.cursoForm.invalid) {
+    this.cursoForm.markAllAsTouched();
+    return;
+  }
 
-    const nuevoCurso = this.cursoForm.getRawValue();
+  const datosCurso = this.cursoForm.getRawValue();
 
-    this.cursoService.crearCurso(nuevoCurso).subscribe({
+  // Si existe un ID, estamos editando un curso
+  if (this.cursoEditandoId) {
+
+    this.cursoService
+      .actualizarCurso(this.cursoEditandoId, datosCurso)
+      .subscribe({
+        next: () => {
+          alert('Curso actualizado correctamente');
+
+          this.limpiarFormulario();
+          this.cargarCursos();
+        },
+        error: (error) => {
+          console.error('Error al actualizar el curso:', error);
+          alert('No se pudo actualizar el curso');
+        }
+      });
+
+  } else {
+
+    // Si no existe ID, estamos creando un curso nuevo
+    this.cursoService.crearCurso(datosCurso).subscribe({
       next: () => {
         alert('Curso registrado correctamente');
 
         this.limpiarFormulario();
-
         this.cargarCursos();
       },
       error: (error) => {
@@ -75,9 +97,14 @@ export class Cursos implements OnInit {
         alert('No se pudo registrar el curso');
       }
     });
+
   }
+}
 
   limpiarFormulario(): void {
+
+    this.cursoEditandoId = null;
+    
     this.cursoForm.reset({
       curso: '',
       docente: '',
@@ -87,4 +114,17 @@ export class Cursos implements OnInit {
       estado: 'Activo'
     });
   }
+
+  editarCurso(curso: CursosModel): void {
+  this.cursoEditandoId = curso._id;
+
+  this.cursoForm.patchValue({
+    curso: curso.curso,
+    docente: curso.docente,
+    categoria: curso.categoria,
+    inscritos: curso.inscritos,
+    precio: curso.precio,
+    estado: curso.estado
+  });
+}
 }
