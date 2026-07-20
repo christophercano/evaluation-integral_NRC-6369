@@ -1,4 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import {
   FormBuilder,
@@ -10,7 +11,7 @@ import { UsuariosService, UsuarioModel } from '../../services/usuarios';
 @Component({
   selector: 'app-usuarios',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule],
+  imports: [RouterLink, ReactiveFormsModule, DatePipe],
   templateUrl: './usuarios.html',
   styleUrl: './usuarios.css',
 })
