@@ -234,38 +234,45 @@
             </span>
 
             <input
-                type="search"
-                placeholder="Buscar por nombre, docente, categoría..."
-                aria-label="Buscar curso" />
+    type="search"
+    placeholder="Buscar por nombre, docente, categoría..."
+    aria-label="Buscar curso"
+    [value]="textoBusqueda()"
+    (input)="textoBusqueda.set($any($event.target).value)" />
 
         </div>
 
 
         <select
-            class="form-control"
-            style="width:auto;"
-            aria-label="Filtrar por categoría">
+    class="form-control"
+    style="width:auto;"
+    aria-label="Filtrar por categoría"
+    [value]="filtroCategoria()"
+    (change)="filtroCategoria.set($any($event.target).value)">
 
-            <option>Todas las categorías</option>
-            <option>Frontend</option>
-            <option>Backend</option>
-            <option>Full Stack</option>
-            <option>Seguridad</option>
+    <option value="">Todas las categorías</option>
+    <option value="Frontend">Frontend</option>
+    <option value="Backend">Backend</option>
+    <option value="Full Stack">Full Stack</option>
+    <option value="Seguridad">Seguridad</option>
+    <option value="Programacion">Programacion</option>
 
-        </select>
+</select>
 
 
         <select
-            class="form-control"
-            style="width:auto;"
-            aria-label="Filtrar por estado">
+    class="form-control"
+    style="width:auto;"
+    aria-label="Filtrar por estado"
+    [value]="filtroEstado()"
+    (change)="filtroEstado.set($any($event.target).value)">
 
-            <option>Todos los estados</option>
-            <option>Activo</option>
-            <option>Inactivo</option>
-            <option>Borrador</option>
+    <option value="">Todos los estados</option>
+    <option value="Activo">Activo</option>
+    <option value="Inactivo">Inactivo</option>
+    <option value="Borrador">Borrador</option>
 
-        </select>
+</select>
 
     </div>
 
@@ -322,7 +329,7 @@
 
         <tbody>
 
-            @for (curso of cursos(); track curso._id) {
+            @for (curso of cursosFiltrados(); track curso._id) {
 
                 <tr>
 

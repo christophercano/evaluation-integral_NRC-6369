@@ -27,6 +27,10 @@ export class Cursos implements OnInit {
 
   cursoEditandoId: string | null = null;
 
+  textoBusqueda = signal('');
+filtroCategoria = signal('');
+filtroEstado = signal('');
+
   private cursoService = inject(CursosService);
   private fb = inject(FormBuilder);
 
@@ -147,6 +151,30 @@ eliminarCurso(id: string): void {
       console.error('Error al eliminar el curso:', error);
       alert('No se pudo eliminar el curso');
     }
+  });
+}
+
+cursosFiltrados(): CursosModel[] {
+  const texto = this.textoBusqueda().toLowerCase().trim();
+  const categoria = this.filtroCategoria();
+  const estado = this.filtroEstado();
+
+  return this.cursos().filter((curso) => {
+
+    const coincideTexto =
+      curso.curso.toLowerCase().includes(texto) ||
+      curso.docente.toLowerCase().includes(texto) ||
+      curso.categoria.toLowerCase().includes(texto);
+
+    const coincideCategoria =
+      categoria === '' ||
+      curso.categoria === categoria;
+
+    const coincideEstado =
+      estado === '' ||
+      curso.estado === estado;
+
+    return coincideTexto && coincideCategoria && coincideEstado;
   });
 }
 
