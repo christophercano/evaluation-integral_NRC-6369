@@ -64,7 +64,7 @@ export default async function CursoDetallePage({ params }: Props) {
 
             <div className="flex gap-4">
               <a
-                href="http://localhost:5173/login"
+                href="https://reactportal-estudiantes.vercel.app/login"
                 className="flex-1 text-center bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-semibold transition"
               >
                 📝 Inscribirme ahora

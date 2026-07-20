@@ -32,7 +32,7 @@ export default async function HomePage() {
               Ver catálogo
             </Link>
             <Link
-              href="http://localhost:5173/login"
+              href="https://reactportal-estudiantes.vercel.app/login"
               className="bg-white/10 hover:bg-white/20 text-white px-8 py-3 rounded-lg font-semibold transition border border-white/20"
             >
               Portal estudiante
