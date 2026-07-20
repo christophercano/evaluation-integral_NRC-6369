@@ -1,8 +1,21 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getCursoById, getCursos } from '@/lib/api';
 
 export const dynamic = 'force-dynamic';
+
+async function getCurso(id: string) {
+  try {
+    const res = await fetch('https://edutech-api-ykso.onrender.com/api/cursos', {
+      cache: 'no-store',
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!res.ok) return null;
+    const cursos = await res.json();
+    return cursos.find((c: any) => c._id === id) || null;
+  } catch {
+    return null;
+  }
+}
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -10,7 +23,7 @@ interface Props {
 
 export default async function CursoDetallePage({ params }: Props) {
   const { id } = await params;
-  const curso = await getCursoById(id);
+  const curso = await getCurso(id);
 
   if (!curso) {
     notFound();
@@ -27,7 +40,6 @@ export default async function CursoDetallePage({ params }: Props) {
           <div className="bg-gradient-to-r from-indigo-600 to-purple-600 p-12 flex items-center justify-center">
             <span className="text-6xl">⚡</span>
           </div>
-
           <div className="p-8">
             <div className="flex items-start justify-between flex-wrap gap-4 mb-6">
               <div>
@@ -42,7 +54,6 @@ export default async function CursoDetallePage({ params }: Props) {
                 {curso.estado}
               </span>
             </div>
-
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
               <div className="bg-gray-50 p-4 rounded-xl text-center">
                 <p className="text-gray-500 text-sm">👨‍🏫 Docente</p>
@@ -61,18 +72,12 @@ export default async function CursoDetallePage({ params }: Props) {
                 <p className="font-bold text-purple-700 text-xl">S/ {curso.precio}</p>
               </div>
             </div>
-
             <div className="flex gap-4">
-              <a
-                href="https://reactportal-estudiantes.vercel.app/login"
-                className="flex-1 text-center bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-semibold transition"
-              >
+              <a href="https://reactportal-estudiantes.vercel.app/login"
+                className="flex-1 text-center bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-semibold transition">
                 📝 Inscribirme ahora
               </a>
-              <Link
-                href="/"
-                className="px-6 py-3 border border-gray-300 rounded-lg font-semibold text-gray-700 hover:bg-gray-50 transition"
-              >
+              <Link href="/" className="px-6 py-3 border border-gray-300 rounded-lg font-semibold text-gray-700 hover:bg-gray-50 transition">
                 Ver más cursos
               </Link>
             </div>

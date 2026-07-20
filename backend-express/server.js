@@ -18,7 +18,8 @@ const allowedOrigins = [
   'http://localhost:3001',
   'https://edutech-api-ykso.onrender.com',
   'https://angularpanel-admin.vercel.app',
-  'https://reactportal-estudiantes.vercel.app'
+  'https://reactportal-estudiantes.vercel.app',
+  'https://nextjsvista-publica.vercel.app'
 ];
 
 if (process.env.FRONTEND_URL) {
