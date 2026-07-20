@@ -6,12 +6,13 @@ Proyecto integrador full stack para la Evaluación Integral Final de **Programac
 
 ## 📋 Integrantes
 
-| Nombre | Rol | Aporte |
-|--------|-----|--------|
-| Integrante 1 | - | Angular Admin Panel |
-| Integrante 2 | - | Backend Express + MongoDB |
-| Integrante 3 | - | React Student Portal |
-| Integrante 4 | - | Next.js + Despliegue |
+|           Nombre               |             Rol         |                 Aporte               |
+|--------------------------------|-------------------------|--------------------------------------|
+| Mario Yonatan Haro Agreda | Frontend Developer (Angular) | Angular Admin Panel |
+| Karlo Andre Vergara Caballero | Backend Developer | Backend Express + MongoDB |
+| Christopher Lenin Cano Romero | Frontend Developer (React) | React Student Portal |
+| Alexis chagua Cueva | Frontend Developer (Next.js) / DevOps | Next.js + Despliegue |
+| Erick Borda Roman | Full Stack Developer | 	Inscripciones (backend + panel admin) y Seguridad |
 
 ---
 
