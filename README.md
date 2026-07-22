@@ -152,7 +152,7 @@ Ver documentación completa en [`/docs/api-endpoints.md`](./docs/api-endpoints.m
 
 ## ▶️ Video de exposición
 
-[🔗 Enlace al video en YouTube](https://youtube.com/...)
+[🔗 Video de exposición en YouTube](https://youtu.be/_QnqINEBfBY)
 
 ---
 
