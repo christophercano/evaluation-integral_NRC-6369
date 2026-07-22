@@ -6,13 +6,13 @@ Proyecto integrador full stack para la Evaluación Integral Final de **Programac
 
 ## 📋 Integrantes
 
-|           Nombre               |             Rol         |                 Aporte               |
-|--------------------------------|-------------------------|--------------------------------------|
-| Mario Yonatan Haro Agreda | Frontend Developer (Angular) | Angular Admin Panel |
-| Karlo Andre Vergara Caballero | Backend Developer | Backend Express + MongoDB |
-| Christopher Lenin Cano Romero | Frontend Developer (React) | React Student Portal |
-| Alexis chagua Cueva | Frontend Developer (Next.js) / DevOps | Next.js + Despliegue |
-| Erick Borda Roman | Full Stack Developer | 	Inscripciones (backend + panel admin) y Seguridad |
+| Nombre                        | Rol                                   | Aporte                                            |
+| ----------------------------- | ------------------------------------- | ------------------------------------------------- |
+| Mario Yonatan Haro Agreda     | Frontend Developer (Angular)          | Angular Admin Panel                               |
+| Karlo Andre Vergara Caballero | Backend Developer                     | Backend Express + MongoDB                         |
+| Christopher Lenin Cano Romero | Frontend Developer (React)            | React Student Portal                              |
+| Alexis chagua Cueva           | Frontend Developer (Next.js) / DevOps | Next.js + Despliegue                              |
+| Erick Borda Roman             | Full Stack Developer                  | Inscripciones (backend + panel admin) y Seguridad |
 
 ---
 
@@ -21,6 +21,7 @@ Proyecto integrador full stack para la Evaluación Integral Final de **Programac
 **Problema:** Las instituciones educativas necesitan una plataforma para gestionar su catálogo de cursos y permitir a los estudiantes explorar e inscribirse de forma digital.
 
 **Objetivos:**
+
 - Panel administrativo (Angular) para CRUD de cursos y usuarios
 - Portal del estudiante (React) para catálogo, inscripción y dashboard
 - Vista pública (Next.js) con SSR para SEO y rendimiento
@@ -47,29 +48,32 @@ MongoDB Atlas ←→ Express API (:3000) ←→ ┌─ Angular Admin (:4200)
 
 ## 🚀 URLs Desplegadas
 
-| Servicio | Local | Producción |
-|----------|-------|------------|
-| Backend API | `http://localhost:3000` | Render |
-| Angular Admin | `http://localhost:4200` | Vercel |
-| React Estudiante | `http://localhost:5173` | Vercel |
-| Next.js Público | `http://localhost:3001` | Vercel |
+| Servicio            | Local                     | Producción | Public URL                                                                                        |
+| ------------------- | ------------------------- | ----------- | ------------------------------------------------------------------------------------------------- |
+| Backend API Express | `http://localhost:3000` | Render      | [edutech-api-ykso.onrender.com/api/cursos](https://edutech-api-ykso.onrender.com/api/cursos)       |
+| Angular Admin       | `http://localhost:4200` | Vercel      | [angularpanel-admin.vercel.app](https://angularpanel-admin.vercel.app/login)                       |
+| React Estudiante    | `http://localhost:5173` | Vercel      | [reactportal-estudiantes.vercel.app/catalogo](https://reactportal-estudiantes.vercel.app/catalogo) |
+| Next.js Público    | `http://localhost:3001` | Vercel      | [nextjsvista-publica.vercel.app](https://nextjsvista-publica.vercel.app/)                          |
 
 ---
 
 ## 📦 Instalación
 
 ### Requisitos
+
 - Node.js ≥ 18
 - pnpm (Angular y Backend)
 - npm (React y Next.js)
 
 ### 1. Clonar repositorio
+
 ```bash
-git clone <repo-url>
-cd cursos-angular-ei
+git clone https://github.com/christophercano/evaluation-integral_NRC-6369
+cd evaluation-integral_NRC-6369
 ```
 
 ### 2. Backend
+
 ```bash
 cd backend-express
 pnpm install
@@ -78,12 +82,14 @@ node server.js          # http://localhost:3000
 ```
 
 ### 3. Angular (Admin)
+
 ```bash
 pnpm install
 pnpm start              # http://localhost:4200
 ```
 
 ### 4. React (Portal Estudiante)
+
 ```bash
 cd frontend-react
 pnpm install
@@ -91,6 +97,7 @@ pnpm dev                # http://localhost:5173
 ```
 
 ### 5. Next.js (Vista Pública)
+
 ```bash
 cd frontend-nextjs
 npm install
@@ -101,10 +108,10 @@ npm run dev             # http://localhost:3001
 
 ## 🔑 Credenciales de prueba
 
-| Rol | Email | Contraseña |
-|-----|-------|------------|
-| Admin | admin@edutech.com | admin123 |
-| Estudiante | (registrarse en el portal) | - |
+| Rol        | Email                      | Contraseña |
+| ---------- | -------------------------- | ----------- |
+| Admin      | admin@edutech.com          | admin123    |
+| Estudiante | (registrarse en el portal) | -           |
 
 > Para crear el admin: usar el endpoint `POST /api/auth/register` con `"rol": "ADMIN"`
 
@@ -114,12 +121,12 @@ npm run dev             # http://localhost:3001
 
 Ver documentación completa en [`/docs/api-endpoints.md`](./docs/api-endpoints.md)
 
-| Recurso | Endpoints |
-|---------|-----------|
-| Auth | `POST /api/auth/register`, `POST /api/auth/login` |
-| Cursos | `GET/POST /api/cursos`, `PUT/DELETE /api/cursos/:id` |
+| Recurso       | Endpoints                                                   |
+| ------------- | ----------------------------------------------------------- |
+| Auth          | `POST /api/auth/register`, `POST /api/auth/login`       |
+| Cursos        | `GET/POST /api/cursos`, `PUT/DELETE /api/cursos/:id`    |
 | Inscripciones | `POST /api/inscripciones`, `GET /api/inscripciones/mis` |
-| Usuarios | `GET /api/usuarios`, `PUT/DELETE /api/usuarios/:id` |
+| Usuarios      | `GET /api/usuarios`, `PUT/DELETE /api/usuarios/:id`     |
 
 ---
 
